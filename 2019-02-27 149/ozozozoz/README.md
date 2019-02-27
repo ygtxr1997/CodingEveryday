@@ -1,1 +1,1 @@
-![first blood](/Stygian Desolator.jpg)
+![firstblood](https://github.com/ygtxr1997/CodingEveryday/tree/master/2019-02-27%20149/ozozozoz/Stygian%20Desolator.jpg)
