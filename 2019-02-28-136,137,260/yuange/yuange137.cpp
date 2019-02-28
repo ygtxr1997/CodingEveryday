@@ -1,4 +1,4 @@
-#define MAX_LENGTH 24 // Ğ¡ĞÄÄÚ´æ¶ÔÆë´íÎó
+ï»¿#define MAX_LENGTH 24 // å°å¿ƒå†…å­˜å¯¹é½é”™è¯¯
 class Solution {
 public:
 	int singleNumber(vector<int>& nums) {
