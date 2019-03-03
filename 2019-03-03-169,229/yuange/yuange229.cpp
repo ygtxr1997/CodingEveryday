@@ -23,18 +23,33 @@
  *______#####______;###________###______#________
  *________##_______####________####______________
  */
-// 遍历一次，遇到相同的数使计数器+1，不同的-1，每当计数器为0时更换返回元素
+// 利用性质：出现次数超过n/3的数字最多只可能有2个，再结合简易版用到的计数器就可以在O(n)内解决
+#define INF 0x3f3f3f3f
 class Solution {
 public:
-    int majorityElement(vector<int>& nums) {
-        int r = nums[0], c = 1;
-        for (auto i : nums) {
-            c += i == r ? 1 : -1;
-            if (c == 0) {
-                r = i;
-                c = 1;
+    vector<int> majorityElement(vector<int>& nums) {
+        if (nums.empty()) return vector<int>();
+        int c1 = 1, c2 = 0;
+        int r1 = nums[0], r2 = INF;
+        vector<int> ret;
+        for (auto i : nums)
+        {
+            if (i == r1) ++c1;
+            else if (i == r2) ++c2;
+            else if (c1 == 0) {
+                r1 = i; c1 = 1;
+            } else if (c2 == 0) {
+                r2 = i; c2 = 1;
+            } else {
+                --c1; --c2;
             }
         }
-        return r;
+        c1 = 0; c2 = 0;
+        for (auto i : nums)
+            if (r1 == i) ++c1;
+            else if (r2 == i) ++c2;
+        if (c1 > nums.size() / 3) ret.push_back(r1);
+        if (c2 > nums.size() / 3) ret.push_back(r2);
+        return ret;
     }
 };
