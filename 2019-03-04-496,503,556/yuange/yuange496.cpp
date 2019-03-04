@@ -32,13 +32,12 @@
  */
 // 使用普通的单调栈即可解决
 class Solution {
-public:
-    vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
-        int n1 = findNums.size(), n2 = nums.size();
+  public:
+	vector<int> nextGreaterElement(vector<int> &findNums, vector<int> &nums) {
+		int n1 = findNums.size(), n2 = nums.size();
 		map<int, int> hash; // key和value都是值
-		stack<int> st; // 单调递减栈
-		for (int i = 0; i < n2;)
-		{
+		stack<int> st;		// 单调递减栈
+		for (int i = 0; i < n2;) {
 			if (st.empty()) st.push(i++);
 			else if (nums[st.top()] >= nums[i]) st.push(i++);
 			else {
@@ -49,7 +48,7 @@ public:
 		}
 		vector<int> ans(n1, -1);
 		for (int i = 0; i < n1; ++i)
-            if (hash.find(findNums[i]) != hash.end()) ans[i] = hash[findNums[i]];
+			if (hash.find(findNums[i]) != hash.end()) ans[i] = hash[findNums[i]];
 		return ans;
-    }
+	}
 };
