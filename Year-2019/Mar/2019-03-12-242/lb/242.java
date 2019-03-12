@@ -5,6 +5,7 @@ class Solution {
         if (sc.length!=tc.length){
             return false;
         }
+        //一共有256个Unicode字符，修改数组大小即可
         int[] si = new int[26];
         int[] ti = new int[26];
         for(int i=0;i<sc.length;i++){
