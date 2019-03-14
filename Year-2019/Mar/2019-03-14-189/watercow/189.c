@@ -1,20 +1,20 @@
-// ¿´µ½Ò»¸öÀ÷º¦µÄË¼Â·
+// çœ‹åˆ°ä¸€ä¸ªå‰å®³çš„æ€è·¯
 /* *
-* ¶ş´ÎĞı×ª
-* Original List                              : 1 2 3 4 5 6 7
-* After reversing all numbers       : 7 6 5 4 3 2 1
-* After reversing first k numbers  : 5 6 7 4 3 2 1
+* äºŒæ¬¡æ—‹è½¬
+* Original List                   : 1 2 3 4 5 6 7
+* After reversing all numbers     : 7 6 5 4 3 2 1
+* After reversing first k numbers : 5 6 7 4 3 2 1
 * After revering last n-k numbers : 5 6 7 1 2 3 4 --> Result
-* Ğı×ªº¯ÊıÊÇ¶ş·Ö½»»»ÔªËØ£¬È»ºóÍ·++£¬Î²--
-* Ê±¼ä¸´ÔÓ¶ÈO(n)
-* ¿Õ¼ä¸´ÔÓ¶ÈO£¨1)
+* æ—‹è½¬å‡½æ•°æ˜¯äºŒåˆ†äº¤æ¢å…ƒç´ ï¼Œç„¶åå¤´++ï¼Œå°¾--
+* æ—¶é—´å¤æ‚åº¦O(n)
+* ç©ºé—´å¤æ‚åº¦Oï¼ˆ1)
 * */
 
 class Solution {
 public:
 	void rotate(vector<int>& nums, int k) {
 		
-		//Ê×ÏÈkÒª±£Ö¤Ğ¡ÓÚnums.size£¬½øĞĞÒ»¸öÄ£ÔËËã
+		//é¦–å…ˆkè¦ä¿è¯å°äºnums.sizeï¼Œè¿›è¡Œä¸€ä¸ªæ¨¡è¿ç®—
 		k = k % nums.size();
 
 		reverse(nums, 0, nums.size() - 1);
