@@ -1,0 +1,26 @@
+class Solution {
+//不明所以的快速方法
+    //这样计算比直接用set来比较size更快
+    public boolean containsDuplicate(int[] nums) {
+        if(nums.length < 2){
+            return false;
+        }
+        //记录最大值？
+        int max = nums[0];
+        for(int i = 1;i < nums.length;i++){
+            if(nums[i] > max){
+                max = nums[i];
+            }else if(nums[i] == max){
+                return true;
+            }else{
+                //循环计算当前数是否在前面出现过---这不是On2的时间复杂度吗？？？？？？
+                for (int j = i - 1;j >= 0;j--){
+                    if(nums[i] == nums[j]){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+}
