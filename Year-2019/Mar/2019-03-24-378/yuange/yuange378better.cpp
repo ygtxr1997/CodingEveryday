@@ -27,35 +27,26 @@
  * @Author: yuange
  * @LastEditors: yuange
  * @Description: Coding everyday!
- * @Date: 2019-03-25 17:31:04
- * @LastEditTime: 2019-03-25 17:31:42
+ * @Date: 2019-03-25 17:54:05
+ * @LastEditTime: 2019-03-25 18:22:18
  */
-// 维护一个size最大为n的优先队列，64ms，35%
-// 直接用优先队列，60ms，49%
+// 目前最快的方法是二分，40ms，88%
 class Solution {
-private:
-    typedef struct Num {
-        Num(int v, int r, int c) : val(v), row(r), col(c) {}
-        int val; // 值
-        int row; // 行
-        int col; // 列
-        bool operator < (const Num& n) const {
-            return val > n.val;
-        }
-    } Num;
 public:
     int kthSmallest(vector<vector<int>>& matrix, int k) {
-        int ret = 0;
-        int n = matrix.size();
-        priority_queue<Num> pq; // 初始size为n的优先队列
-        for (int i = 0; i < n; ++i) pq.push(Num(matrix[i][0], i, 0));
-        while (k--) {
-            int row = pq.top().row;
-            int col = pq.top().col + 1;
-            ret = pq.top().val;
-            pq.pop();
-            if (col < n) pq.push(Num(matrix[row][col], row, col));
+        int n = matrix.size(), l = matrix[0][0], r = matrix[n - 1][n - 1] + 1;
+        int mid = l;
+        while (l < r) {
+            mid = l + (r - l) / 2; // 如果直接用(l + r)/2会超时
+            int c1 = 0, c2 = 0;
+            for (auto &vec : matrix) {
+                c1 += lower_bound(vec.begin(), vec.end(), mid) - vec.begin();
+                c2 += upper_bound(vec.begin(), vec.end(), mid) - vec.begin();
+            }
+            if (c1 < k && c2 >= k) return mid;
+            else if (c1 < k) l = mid + 1;
+            else r = mid;
         }
-        return ret;
+        return mid;
     }
 };
