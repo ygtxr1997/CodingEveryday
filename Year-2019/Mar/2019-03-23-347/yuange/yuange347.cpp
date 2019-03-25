@@ -30,29 +30,18 @@
  * @Date: 2019-03-25 14:52:42
  * @LastEditTime: 2019-03-25 14:54:09
  */
-// 普通的map+优先队列堆排序，32ms，20%
+// 普通的map+优先队列堆排序，20ms，98%
+// 改进版：不需要自定义比较运算符，直接用pair就好
 class Solution {
-private:
-    typedef struct item {
-        item(int v, int c) : value(v), count(c) {}
-        int value = 0;
-        int count = 0;
-        bool operator < (const item& i) const {
-            return count < i.count;
-        }
-    } item;
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         vector<int> ret;
         unordered_map<int, int> mp;
-        priority_queue<item> pq;
-        for (auto i : nums)
-            if (mp.find(i) == mp.end()) mp.insert(pair<int,int>(i, 1));
-            else ++mp[i];
-        for (auto p : mp)
-            pq.push(item(p.first, p.second));
-        for (int i = 0; i < k; ++i) {
-            ret.push_back(pq.top().value);
+        priority_queue<pair<int, int>> pq;
+        for (auto i : nums) mp[i]++;
+        for (auto p : mp) pq.push(pair<int, int>(p.second, p.first));
+        while (k--) {
+            ret.push_back(pq.top().second);
             pq.pop();
         }
         return ret;
