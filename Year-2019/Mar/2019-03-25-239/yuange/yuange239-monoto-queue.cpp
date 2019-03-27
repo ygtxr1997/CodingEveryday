@@ -37,7 +37,7 @@ public:
 		vector<int> ret;
 		int m = 0, n = nums.size();
 		for (int i = 0; i < k; ++i) if (nums[i] > nums[m]) m = i;
-        if (nums.empty()) return ret;
+        	if (nums.empty()) return ret;
 		ret.push_back(nums[m]);
 		for (int i = k; i < n; ++i) {
 			if (i - k == m) for (int j = ++m; j <= i; ++j) m = nums[j] > nums[m] ? j : m;
