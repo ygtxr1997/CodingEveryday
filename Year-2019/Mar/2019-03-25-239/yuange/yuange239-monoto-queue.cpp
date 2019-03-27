@@ -36,13 +36,11 @@ public:
 	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
 		vector<int> ret;
 		int m = 0, n = nums.size();
-		for (int i = 0; i < k; ++i) if (nums[i] > nums[m]) m = i;
-        	if (nums.empty()) return ret;
-		ret.push_back(nums[m]);
-		for (int i = k; i < n; ++i) {
-			if (i - k == m) for (int j = ++m; j <= i; ++j) m = nums[j] > nums[m] ? j : m;
+		for (int i = 0; i < n; ++i) {
+			if (i < k) m = nums[i] > nums[m] ? i : m;
+			else if (i - k == m) for (int j = ++m; j <= i; ++j) m = nums[j] > nums[m] ? j : m;
 			else if (nums[i] > nums[m]) m = i;
-			ret.push_back(nums[m]);
+			if (i >= k - 1) ret.push_back(nums[m]);
 		}
 		return ret;
 	}
