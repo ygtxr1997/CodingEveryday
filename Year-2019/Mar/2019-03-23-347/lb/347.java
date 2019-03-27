@@ -31,7 +31,7 @@ public class TopKFrequent {
     public Comparator<Pair<Integer,Integer>> comparator = new Comparator<Pair<Integer, Integer>>() {
         @Override
         public int compare(Pair<Integer, Integer> o1, Pair<Integer, Integer> o2) {
-            return o1.getValue() - o2.getValue();//优先pop value值最大的pair
+            return o2.getValue() - o1.getValue();//优先pop value值最大的pair
         }
     };
 }
