@@ -32,6 +32,7 @@
  */
 // 普通的map+优先队列堆排序，20ms，98%
 // 改进版：不需要自定义比较运算符，直接用pair就好
+// 增强版：插入相反数代替最小堆，优先队列最多容纳k个数
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
@@ -39,7 +40,10 @@ public:
         unordered_map<int, int> mp;
         priority_queue<pair<int, int>> pq;
         for (auto i : nums) mp[i]++;
-        for (auto p : mp) pq.push(pair<int, int>(p.second, p.first));
+        for (auto p : mp) {
+            pq.push(pair<int, int>(-p.second, p.first));
+            if (pq.size() > k) pq.pop();
+        }
         while (k--) {
             ret.push_back(pq.top().second);
             pq.pop();
