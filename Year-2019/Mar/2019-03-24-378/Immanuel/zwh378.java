@@ -1,4 +1,15 @@
 class Solution {
+    
+    /*         a
+       -------------------
+       |                 |
+     d |                 | b
+       |                 |
+       |                 |
+       ------------------- 
+              c
+     从b面向左下角逼近，快速求出矩阵中小于等于middle的数的个数
+     */
     private int countLorE(int[][] matrix, int middle){
         int count = 0;
         int n = matrix.length;
@@ -20,7 +31,7 @@ class Solution {
         int bottom = matrix[0][0];
         int top = matrix[matrix.length - 1][matrix.length - 1];
         int middle = 0;
-        while (bottom <= top) {
+        while (bottom < top) {
             middle = bottom + (top - bottom) / 2;
             int count = countLorE(matrix, middle);
             if(count < k){
