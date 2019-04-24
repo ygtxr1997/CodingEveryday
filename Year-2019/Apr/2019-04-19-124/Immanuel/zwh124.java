@@ -37,6 +37,10 @@ public class Solution {
         if(root == null) return 0;
         int outPut = getMax(root);
         max = Math.max(max, outPut);
+
+        //使用如下语句计算时，对于输入“1，2，3”，返回值为4，而不是6，可能和加载机制有关？
+        //max = Math.max(max, getMax(root));
+
         return max;
     }
 }
