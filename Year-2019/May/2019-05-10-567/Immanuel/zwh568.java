@@ -1,5 +1,5 @@
 public class Solution {
-
+    //字符范围是确定的，且有频繁的更新操作，所以没必要使用Map
     public boolean checkInclusion(String s1, String s2) {
         if(s1.length() == 0)
             return true;
