@@ -48,25 +48,12 @@ public:
 		// 依次遍历每一位，从高到低
 		for (int j = n; j > 0; j--) {
 
-			int index = k / factorial[j - 1];
+			int index = ceil(double(k) / double(factorial[j - 1]));
 
-			if (index > 1) {
-				res[j] = candidate[index + 1];
-				candidate.erase(candidate.begin() + index + 1);
-			}
+			res[j] = candidate[index];
+			candidate.erase(candidate.begin() + index);
 
-			else if (index == 1) {
-				res[j] = candidate[index];
-				candidate.erase(candidate.begin() + index);
-			}
-
-			else {
-				res[j] = candidate[index + 1];
-				candidate.erase(candidate.begin() + index + 1);
-			}
-
-			k = k - index * factorial[j - 1];
-
+			k = k - (index - 1) * factorial[j - 1]; // 这一步一定要注意 是(index - 1)而不是index，自己想why
 		}
         
 		// 生成最终返回结果
