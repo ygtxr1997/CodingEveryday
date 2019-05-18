@@ -8,12 +8,10 @@ public class Solution{
         for(int i = 0; i < s.length(); i++){
             count[s.charAt(i) - 'a']++;
         }
-        Set<Character> separator = new HashSet<>();
         boolean flag = true;
         for(int i = 0; i < count.length; i++){
             if(count[i] != 0&& count[i] < k){
                 flag = false;
-                separator.add((char)(i + 'a'));
             }
         }
         if(flag)
@@ -24,7 +22,7 @@ public class Solution{
         int post = 0;
         while (post < s.length()){
             char tmp = s.charAt(post);
-            if(separator.contains(tmp)){
+            if(count[tmp - 'a'] < k){
                 outPut = Math.max(outPut, longestSubstring(s.substring(pre, post), k));
                 pre = ++post;
             }
