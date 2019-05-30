@@ -29,7 +29,10 @@ public class Solution {
 
 //         return count == numCourses;
 //     }
-    
+
+
+//使用List代替一维数组来存储edge，大大提高了算法效率
+//修改前runtime 26ms，beats 40%，修改后runtime 3ms，beats 95%    
      public boolean canFinish(int numCourses, int[][] prerequisites) {
         List[] graph = new List[numCourses];
         int[] inDegree = new int[numCourses];
