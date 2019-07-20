@@ -5,31 +5,22 @@ public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         visited.resize(numCourses);
         table.resize(numCourses);
-        for (auto v : prerequisites) {
-            table[v[1]].insert(v[0]);
-        }
-        for (int i = 0; i < numCourses; ++i) {
-            dfs(i);
-        }
+        for (auto v : prerequisites) table[v[1]].insert(v[0]);
+        for (int i = 0; i < numCourses; ++i) dfs(i);
         return !hasCircle;
     }
     
     // 返回 true 时代表有环
     void dfs(int cur) {
-        if (table[cur].empty()) {   // 叶子节点
-            visited[cur] = 1;
-            return;
-        }
         visited[cur] = 2;           // 加入正在访问的序列
         for (auto son : table[cur]) {
-            if (visited[son] == 0) {
-                dfs(son);
-            } else if (visited[son] == 2) {
+            if (visited[son] == 0) dfs(son);
+            else if (visited[son] == 2) {
                 hasCircle = true;
                 return;        // 有环
             }
         }
-        visited[cur] = 1;
+        visited[cur] = 1;           // 访问完毕
     }
 private:
     bool hasCircle = false;
