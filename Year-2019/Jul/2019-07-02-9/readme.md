@@ -1,2 +1,2 @@
-## Q7 整数反转
-* [Q7](https://leetcode-cn.com/problems/reverse-integer/)
+## Q9 回文数
+* [Q9](https://leetcode-cn.com/problems/palindrome-number/)
