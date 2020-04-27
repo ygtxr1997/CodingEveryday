@@ -10,7 +10,7 @@ public:
             left = n > left ? n : left;
             right += n;
         }
-        while (left != right) {
+    while (left != right) {
             long k = 1, cur_sum = 0;
             long mid = (left + right) / 2;
             for (auto n : nums) {
